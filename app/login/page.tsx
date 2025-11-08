@@ -1,0 +1,30 @@
+import { LoginForm } from "@/components/login-form";
+// import { GradientMesh } from "@/components/gradient-mesh";
+// here instead of gradient mess, we have a static image for better performance
+
+export default function Page() {
+  return (
+    <div className="grid min-h-svh lg:grid-cols-2">
+      <div className="flex flex-col gap-4 p-6 md:p-10">
+        <div className="flex flex-1 items-center justify-center">
+          <div className="w-full max-w-xs">
+            <LoginForm />
+          </div>
+        </div>
+      </div>
+      <div className="bg-muted relative hidden lg:block">
+        {/* <GradientMesh
+          colors={["#bcecf6", "#00aaff", "#ffd447"]}
+          distortion={8}
+          swirl={0.2}
+          speed={1}
+          rotation={90}
+          waveAmp={0.2}
+          waveFreq={20}
+          waveSpeed={0.2}
+          grain={0.06}
+        /> */}
+      </div>
+    </div>
+  );
+}

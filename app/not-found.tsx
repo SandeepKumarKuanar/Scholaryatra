@@ -1,10 +1,10 @@
+'use client'
 
-import Link from 'next/link'
-import { Button } from '@/components/ui/button'
-import Image from 'next/image'
-import { TextEffect } from '@/components/ui/text-effect'
+// We'll use standard <a> tags instead of <Link> for this component
 import { AnimatedGroup } from '@/components/ui/animated-group'
-import LogoCloud from "@/components/ui/logocloud";
+import { Button } from '@/components/ui/button'
+import { TextEffect } from '@/components/ui/text-effect'
+import React from 'react'
 
 const transitionVariants = {
     item: {
@@ -18,7 +18,7 @@ const transitionVariants = {
             filter: 'blur(0px)',
             y: 0,
             transition: {
-                type: "spring" as const,
+                type: 'spring' as const,
                 bounce: 0.3,
                 duration: 1.5,
             },
@@ -26,7 +26,7 @@ const transitionVariants = {
     },
 }
 
-export default function HeroSection() {
+export default function Custom404() {
     return (
         <>
             <main className="overflow-hidden">
@@ -46,8 +46,8 @@ export default function HeroSection() {
                                     preset="fade-in-blur"
                                     speedSegment={0.3}
                                     as="h1"
-                                    className="mt-8 max-w-2xl text-balance text-5xl font-medium md:text-6xl lg:mt-16">
-                                    Future. Redefined. Empowered.
+                                    className="mt-8 max-w-2xl text-balance text-5xl font-medium md:text-6xl lg:mt-16 text-gray-900 dark:text-white">
+                                    404.
                                 </TextEffect>
                                 <TextEffect
                                     per="line"
@@ -55,10 +55,9 @@ export default function HeroSection() {
                                     speedSegment={0.3}
                                     delay={0.5}
                                     as="p"
-                                    className="mt-8 max-w-2xl text-pretty text-lg">
-                                    Discover a world of opportunities with Scholaryatra – your gateway to scholarships, internships, and academic resources tailored for students and educators alike.
+                                    className="mt-8 max-w-2xl text-pretty text-lg text-gray-700 dark:text-gray-300">
+                                    The page you are looking for does not exist.
                                 </TextEffect>
-
                                 <AnimatedGroup
                                     variants={{
                                         container: {
@@ -74,51 +73,22 @@ export default function HeroSection() {
                                     className="mt-12 flex items-center gap-2">
                                     <div
                                         key={1}
-                                        className="bg-foreground/10 rounded-[calc(var(--radius-xl)+0.125rem)] border p-0.5">
+                                        className="rounded-[calc(var(--radius-xl)+0.125rem)] border border-foreground/10 p-0.5">
                                         <Button
                                             asChild
                                             size="lg"
                                             className="rounded-xl px-5 text-base">
-                                            <Link href="/signup">
-                                                <span className="text-nowrap">Create Account</span>
-                                            </Link>
+                                            {/* Using standard <a> tag */}
+                                            <a href="/">
+                                                <span className="text-nowrap">
+                                                    Go back home
+                                                </span>
+                                            </a>
                                         </Button>
                                     </div>
                                 </AnimatedGroup>
                             </div>
                         </div>
-                        <AnimatedGroup
-                            variants={{
-                                container: {
-                                    visible: {
-                                        transition: {
-                                            staggerChildren: 0.05,
-                                            delayChildren: 0.75,
-                                        },
-                                    },
-                                },
-                                ...transitionVariants,
-                            }}>
-                            <div className="mask-b-from-55% relative -mr-56 mt-8 overflow-hidden px-2 sm:mr-0 sm:mt-12 md:mt-20">
-                                <div className="inset-shadow-2xs ring-background dark:inset-shadow-white/20 bg-background relative mx-auto max-w-5xl overflow-hidden rounded-2xl border p-4 shadow-lg shadow-zinc-950/15 ring-1">
-                                    <Image
-                                        className="bg-background aspect-15/8 relative hidden rounded-2xl dark:block"
-                                        src="/mail2.png"
-                                        alt="demo-screen of the interface"
-                                        width="2700"
-                                        height="1440"
-                                    />
-                                    <Image
-                                        className="z-2 border-border/25 aspect-15/8 relative rounded-2xl border dark:hidden"
-                                        src="/mail2-light.png"
-                                        alt="demo-screen of the interface"
-                                        width="2700"
-                                        height="1440"
-                                    />
-                                </div>
-                            </div>
-                        </AnimatedGroup>
-                        <LogoCloud/>
                     </div>
                 </section>
             </main>
