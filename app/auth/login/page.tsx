@@ -1,11 +1,10 @@
-import { SignUpForm } from "./signup-form";
-// import { GradientMesh } from "@/components/gradient-mesh";
-// here instead of gradient mess, we have a static image for better performance
+import { LoginForm } from "@/components/login-form";
+import Image from 'next/image';
+import { inherits } from "node:util";
 
 export default function Page() {
   return (
     <div className="grid min-h-svh lg:grid-cols-2">
-      {/* FORM COLUMN */}
       <div
         className="
           flex flex-col gap-4 p-6 md:p-10 
@@ -14,13 +13,11 @@ export default function Page() {
           relative z-10 lg:z-auto bg-white dark:bg-black
         ">
         <div className="flex flex-1 items-center justify-center">
-          {/* Signing up page */}
           <div className="w-full max-w-xs">
-            <SignUpForm />
+            <LoginForm />
           </div>
         </div>
       </div>
-      
       {/*
         SCREEN (PHONE) COLUMN
       */}

@@ -30,7 +30,7 @@ export default function about() {
                               delay={0.5}
                               as="p"
                               className="mt-8 max-w-2xl text-pretty text-lg">
-                              A brief overview of Scholaryatra, our mission, vision, and the team behind this platform.People behind Scholaryatra, and our goals for the academic community.
+                              A brief overview of Scholaryatra, our mission, vision, and the team behind this platform. People behind Scholaryatra, and our goals for the academic community.
                           </TextEffect>
                       </div>
                   </div>

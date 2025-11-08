@@ -7,18 +7,24 @@ import React from 'react'
 import { cn } from '@/lib/utils'
 import { useScroll } from 'motion/react'
 
+import { useCurrentUserName } from '@/hooks/use-current-user-name'
+// (Assuming the path to your avatar component)
+import { CurrentUserAvatar } from '@/components/current-user-avatar'
+
 const menuItems = [
-    { name: 'Students', href: './students' },
-    { name: 'Professors', href: './professors' },
-    { name: 'Opportunities', href: './opportunities' },
-    { name: 'About us', href: './about' },
+    { name: 'Students', href: '/students' },
+    { name: 'Professors', href: '/professors' },
+    { name: 'Opportunities', href: '/opportunities' },
+    { name: 'About us', href: '/about' },
 ]
 
 export const HeroHeader = () => {
     const [menuState, setMenuState] = React.useState(false)
     const [scrolled, setScrolled] = React.useState(false)
-
     const { scrollYProgress } = useScroll()
+
+    // --- 2. CALL THE HOOK TO GET THE USER'S NAME ---
+    const name = useCurrentUserName()
 
     React.useEffect(() => {
         const unsubscribe = scrollYProgress.on('change', (latest) => {
@@ -31,7 +37,10 @@ export const HeroHeader = () => {
         <header>
             <nav
                 data-state={menuState && 'active'}
-                className={cn('fixed z-20 w-full border-b transition-colors duration-150', scrolled && 'bg-background/50 backdrop-blur-3xl')}>
+                className={cn(
+                    'fixed z-20 w-full border-b transition-colors duration-150',
+                    scrolled && 'bg-background/50 backdrop-blur-3xl'
+                )}>
                 <div className="mx-auto max-w-5xl px-6 transition-all duration-300">
                     <div className="relative flex flex-wrap items-center justify-between gap-6 py-3 lg:gap-0 lg:py-4">
                         <div className="flex w-full items-center justify-between gap-12 lg:w-auto">
@@ -44,7 +53,11 @@ export const HeroHeader = () => {
 
                             <button
                                 onClick={() => setMenuState(!menuState)}
-                                aria-label={menuState == true ? 'Close Menu' : 'Open Menu'}
+                                aria-label={
+                                    menuState == true
+                                        ? 'Close Menu'
+                                        : 'Open Menu'
+                                }
                                 className="relative z-20 -m-2.5 -mr-4 block cursor-pointer p-2.5 lg:hidden">
                                 <Menu className="in-data-[state=active]:rotate-180 in-data-[state=active]:scale-0 in-data-[state=active]:opacity-0 m-auto size-6 duration-200" />
                                 <X className="in-data-[state=active]:rotate-0 in-data-[state=active]:scale-100 in-data-[state=active]:opacity-100 absolute inset-0 m-auto size-6 -rotate-180 scale-0 opacity-0 duration-200" />
@@ -79,22 +92,35 @@ export const HeroHeader = () => {
                                     ))}
                                 </ul>
                             </div>
+
+                            {/* --- 3. APPLY CORRECT CONDITIONAL RENDERING --- */}
                             <div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit">
-                                <Button
-                                    asChild
-                                    variant="outline"
-                                    size="sm">
-                                    <Link href="./login">
-                                        <span>Login</span>
-                                    </Link>
-                                </Button>
-                                <Button
-                                    asChild
-                                    size="sm">
-                                    <Link href="./signup">
-                                        <span>Create Account</span>
-                                    </Link>
-                                </Button>
+                                {name === '?' ? (
+                                    // If name is "?", user is logged out (or loading)
+                                    <>
+                                        {/* <Button
+                                            asChild
+                                            variant="outline"
+                                            size="sm">
+                                            <Link href="/auth/login">
+                                                <span>Login</span>
+                                            </Link>
+                                        </Button> */}
+                                        <Button
+                                            asChild
+                                            size="sm">
+                                            {/* <Link href="/signup">
+                                                <span>Create Account</span>
+                                            </Link> */}
+                                            <Link href="/auth/login">
+                                                <span>Create Account</span>
+                                            </Link>
+                                        </Button>
+                                    </>
+                                ) : (
+                                    // Otherwise, name is a real name, so show Avatar
+                                    <CurrentUserAvatar />
+                                )}
                             </div>
                         </div>
                     </div>

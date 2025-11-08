@@ -59,7 +59,7 @@ const links = [
             },
             {
                 title: 'Contact Us',
-                href: '#',
+                href: 'mailto:kuanarsandeepkumar@gmail.com?subject=%7BWrite%20in%20brief%20the%20issue%20you%20faced%7D&body=Location%3A%0D%0A%7BAt%20what%20point%20in%20the%20interface%20did%20you%20find%20the%20issue%7D%0D%0AIssue%3A%0D%0A%7BYou%20may%20use%20ChatGPT%20or%20so%2C%20but%20the%20issue%20shall%20be%20conveyed%20to%20us%20sincerely%2C%20we%20would%20look%20into%20it%7D%0D%0AMore%20brief%3A%0D%0A%7BMay%20include%20more%20brief%20on%20the%20problems%20you%20faced%2C%20we%20would%20reach%20out%20to%20u%7D%0D%0A%0D%0A%0D%0AThanking%20you%0D%0ABrought%20to%20you%20by%20Scholaryatra',
             },
             // {
             //     title: 'Help',

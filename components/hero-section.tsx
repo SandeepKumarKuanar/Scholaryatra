@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { TextEffect } from '@/components/ui/text-effect'
 import { AnimatedGroup } from '@/components/ui/animated-group'
 import LogoCloud from "@/components/ui/logocloud";
+import { Separator } from '@radix-ui/react-separator'
 
 const transitionVariants = {
     item: {
@@ -104,14 +105,14 @@ export default function HeroSection() {
                                     <Image
                                         className="bg-background aspect-15/8 relative hidden rounded-2xl dark:block"
                                         src="/mail2.png"
-                                        alt="demo-screen of the interface"
+                                        alt="any new updates are to be shown here"
                                         width="2700"
                                         height="1440"
                                     />
                                     <Image
                                         className="z-2 border-border/25 aspect-15/8 relative rounded-2xl border dark:hidden"
                                         src="/mail2-light.png"
-                                        alt="demo-screen of the interface"
+                                        alt="any new updates are to be shown here"
                                         width="2700"
                                         height="1440"
                                     />
@@ -122,6 +123,7 @@ export default function HeroSection() {
                     </div>
                 </section>
             </main>
+        <Separator/>
         </>
     )
 }
