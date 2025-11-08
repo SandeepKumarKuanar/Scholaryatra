@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import "../globals.css";
 import { HeroHeader } from "@/components/header";
-import FooterSection from "@/components/footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Home | Scholaryatra",
-  description: "A platform to explore the world of opportunities.",
+  title: "Professors | Scholaryatra",
+  description: "The directory of professors who are connected to this network.",
 };
 
 export default function RootLayout({
@@ -29,9 +28,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <HeroHeader/>
         {children}
-        <FooterSection/>
       </body>
     </html>
   );
