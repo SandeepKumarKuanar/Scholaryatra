@@ -7,34 +7,30 @@ import { createServerClient, serializeCookieHeader } from "@supabase/ssr"
 export function createClient(request: Request, env: Env) {
   const cookieHeader = request.headers.get("cookie") || ""
 
-  return createServerClient(
-    env.SUPABASE_URL!,
-    env.SUPABASE_PUBLISHABLE_OR_ANON_KEY!,
-    {
-      cookies: {
-        getAll() {
-          if (!cookieHeader) return []
+  return createServerClient(env.SUPABASE_URL, env.SUPABASE_KEY, {
+    cookies: {
+      getAll() {
+        if (!cookieHeader) return []
 
-          return cookieHeader
-            .split(";")
-            .map((cookie) => {
-              const [name, ...valueParts] = cookie.trim().split("=")
-              return {
-                name: name || "",
-                value: valueParts.join("=") || "",
-              }
-            })
-            .filter(({ name }) => name)
-        },
-        setAll(cookiesToSet) {
-          cookiesToSet.forEach(({ name, value, options }) =>
-            request.headers.append(
-              "Set-Cookie",
-              serializeCookieHeader(name, value, options),
-            ),
-          )
-        },
+        return cookieHeader
+          .split(";")
+          .map((cookie) => {
+            const [name, ...valueParts] = cookie.trim().split("=")
+            return {
+              name: name || "",
+              value: valueParts.join("=") || "",
+            }
+          })
+          .filter(({ name }) => name)
+      },
+      setAll(cookiesToSet) {
+        cookiesToSet.forEach(({ name, value, options }) =>
+          request.headers.append(
+            "Set-Cookie",
+            serializeCookieHeader(name, value, options),
+          ),
+        )
       },
     },
-  )
+  })
 }
